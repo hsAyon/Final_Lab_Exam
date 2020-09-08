@@ -48,6 +48,6 @@ class adminController extends Controller
                 ->where('logins.usertype','employer')
                 ->get();
 
-        return view('admin.viewemp', $data);
+        return view('admin.viewemp')->with('data', $data);
     }
 }

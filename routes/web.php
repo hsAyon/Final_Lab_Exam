@@ -29,3 +29,4 @@ Route::post('/register', 'registerController@register');
 Route::get('/admin', 'adminController@index');
 Route::get('/admin/addemp', 'adminController@addemp');
 Route::post('/admin/addemp', 'adminController@register');
+Route::get('/admin/viewemp', 'adminController@viewemp');
