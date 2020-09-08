@@ -78,4 +78,22 @@ class adminController extends Controller
 
         return redirect('/admin/viewemp');
     }
+
+    //delete
+    function delemp($id, Request $request){
+        
+        if($request->session()->has('username')){
+            if($request->session()->get('usertype') == "admin"){
+                $tlogin = login::find($id);
+                $temployer = employer::where('uid', $id)->first();
+
+                $tlogin->delete();
+                $temployer->delete();
+
+                return redirect('/admin/viewemp');
+            }
+        } else {
+            return response('Not Admin', 403);
+        }
+    }
 }

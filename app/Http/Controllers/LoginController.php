@@ -10,11 +10,13 @@ use App\login;
 class LoginController extends Controller
 {
     function index(Request $request){
-        if($request->session()->get('usertype') == "employer"){
-            return redirect('/home');
-        }
-        else if($request->session()->get('usertype') == "admin"){
-            return redirect('/admin');
+        if($request->session()->has('username')){
+            if($request->session()->get('usertype') == "employer"){
+                return redirect('/home');
+            }
+            else if($request->session()->get('usertype') == "admin"){
+                return redirect('/admin');
+            }
         }
         
         return view('login.index');

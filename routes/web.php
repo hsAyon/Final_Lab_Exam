@@ -32,3 +32,4 @@ Route::post('/admin/addemp', 'adminController@register');
 Route::get('/admin/viewemp', 'adminController@viewemp');
 Route::get('/admin/edit/{id}', 'adminController@editemp');
 Route::post('/admin/edit/{id}', 'adminController@editconf');
+Route::get('/admin/delete/{id}', 'adminController@delemp');

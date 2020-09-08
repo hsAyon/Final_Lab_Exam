@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Employers</title>
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('document').ready(function () {
+        $('.delEmp').click(function(e){
+            var r = confirm("Confirm delete?");
+            if (r == true) {
+                location.href = '/admin/delete/'+ e.target.value;
+            } else {
+            }
+
+        });
+    });
+    
+</script>
+
 <body>
     <div>
         <table>
@@ -54,7 +70,7 @@
                                 <td>{{$employer->contact}}</td>
                                 <td>
                                     <button onclick="location.href = '/admin/edit/{{$employer->uid}}'">Edit</button>
-                                    <button style="color: red" onclick="location.href = '/admin/delete/{{$employer->uid}}'">Delete</button>
+                                    <button style="color: red" class="delEmp" value="{{$employer->uid}}">Delete</button>
                                 </td>
                             </tr>
                         @endforeach
