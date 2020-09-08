@@ -41,6 +41,11 @@
                 </tr>
             </table>
         </form>
+        <div style='color: red;'>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </div>
     </fieldset>
 </body>
 </html>

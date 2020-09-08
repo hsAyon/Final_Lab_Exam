@@ -24,7 +24,7 @@ class registerReq extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required',
+            'username' => 'required|unique:App\login,username',
             'password' => 'required|confirmed|min:#',
             'name' => 'required',
             'contact' => 'required',
@@ -35,6 +35,7 @@ class registerReq extends FormRequest
     {
         return [
             'username.required' => 'Username Required!',
+            'username.unique' => 'Username already exists!',
             'password.required' => 'Password Required!',
             'password.confirmed' => 'Passwords do not match!',
             'password.min' => 'Password minimum 3 characters!',
