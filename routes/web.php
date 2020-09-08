@@ -20,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 //Root - Login
 Route::get('/', 'loginController@index');
 Route::post('/', 'loginController@verify');
+
+//Register
+Route::get('/register', 'registerController@index');
+Route::post('/register', 'registerController@register');
