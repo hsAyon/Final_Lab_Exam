@@ -17,6 +17,13 @@
             }
 
         });
+
+        $('#searchBtn').click(function(e){
+            var search = $('#empSearch').val();
+            $.post('/admin/viewemp',{'search': search, '_token': '{{csrf_token()}}'}, function(uphtml){
+                $('#dispEmp').html($('#dispEmp', uphtml).html())
+            });
+        });
     });
     
 </script>

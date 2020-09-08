@@ -30,6 +30,7 @@ Route::get('/admin', 'adminController@index');
 Route::get('/admin/addemp', 'adminController@addemp');
 Route::post('/admin/addemp', 'adminController@register');
 Route::get('/admin/viewemp', 'adminController@viewemp');
+Route::post('/admin/viewemp', 'adminController@empsearch');
 Route::get('/admin/edit/{id}', 'adminController@editemp');
 Route::post('/admin/edit/{id}', 'adminController@editconf');
 Route::get('/admin/delete/{id}', 'adminController@delemp');

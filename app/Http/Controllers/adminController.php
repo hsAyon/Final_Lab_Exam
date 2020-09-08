@@ -96,4 +96,24 @@ class adminController extends Controller
             return response('Not Admin', 403);
         }
     }
+
+    //search
+    function empsearch(Request $request){
+        if( $request->has('search') && $request->search != ''){
+            $data = DB::table('employers')
+                ->join('logins', 'employers.uid', '=', 'logins.id')
+                ->select('employers.*', 'logins.username')
+                ->where('logins.usertype','employer')
+                ->where('employers.name', 'LIKE', "%{$request->search}%")
+                ->get();
+        } else {
+            $data = DB::table('employers')
+                ->join('logins', 'employers.uid', '=', 'logins.id')
+                ->select('employers.*', 'logins.username')
+                ->where('logins.usertype','employer')
+                ->get();
+        }
+
+        return view('admin.viewemp')->with('data', $data);
+    }
 }
