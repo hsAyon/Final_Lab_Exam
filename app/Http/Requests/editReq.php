@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class registerReq extends FormRequest
+class editReq extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,10 @@ class registerReq extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:App\login,username',
-            'password' => 'required|confirmed|min:#',
+            'username' => [
+                'required',
+                Rule::unique('logins')->ignore($this->route('id'))
+            ],
             'name' => 'required',
             'contact' => 'required',
         ];
@@ -36,9 +39,6 @@ class registerReq extends FormRequest
         return [
             'username.required' => 'Username Required!',
             'username.unique' => 'Username already exists!',
-            'password.required' => 'Password Required!',
-            'password.confirmed' => 'Passwords do not match!',
-            'password.min' => 'Password minimum 3 characters!',
             'name.required' => 'Name Required!',
             'contact.required' => 'Contact information Required!',
         ];

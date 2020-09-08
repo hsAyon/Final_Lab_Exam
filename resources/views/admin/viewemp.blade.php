@@ -52,9 +52,10 @@
                                 <td>{{$employer->name}}</td>
                                 <td>{{$employer->company}}</td>
                                 <td>{{$employer->contact}}</td>
-                            <td><button onclick="location.href = '/admin/edit/{{$employer->uid}}'">Edit</button>
-                                <button style="color: red" onclick="location.href = '/admin/delete/{{$employer->uid}}'">Delete</button>
-                            </td>
+                                <td>
+                                    <button onclick="location.href = '/admin/edit/{{$employer->uid}}'">Edit</button>
+                                    <button style="color: red" onclick="location.href = '/admin/delete/{{$employer->uid}}'">Delete</button>
+                                </td>
                             </tr>
                         @endforeach
                     </table>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\registerReq;
+use App\Http\Requests\editReq;
 use App\login;
 use App\employer;
 
@@ -49,5 +50,32 @@ class adminController extends Controller
                 ->get();
 
         return view('admin.viewemp')->with('data', $data);
+    }
+    //edit
+    function editemp($id, Request $req){
+        
+        $data = DB::table('employers')
+                ->join('logins', 'employers.uid', '=', 'logins.id')
+                ->select('employers.*', 'logins.username')
+                ->where('logins.usertype','employer')
+                ->where('employers.uid', $id)
+                ->get();
+
+        return view('admin.editemp')->with('data', $data[0]);
+    }
+
+    function editconf($id, editReq $request){
+
+        $tlogin = login::where('id', $id)->first();
+        $tlogin->username = $request->username;
+        $tlogin->save();
+
+        $temployer = employer::where('uid', $id)->first();
+        $temployer->name = $request->name;
+        $temployer->company = $request->company;
+        $temployer->contact = $request->contact;
+        $temployer->save();
+
+        return redirect('/admin/viewemp');
     }
 }
