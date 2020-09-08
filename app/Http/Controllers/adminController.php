@@ -8,11 +8,16 @@ use App\Http\Requests\registerReq;
 use App\login;
 use App\employer;
 
-class RegisterController extends Controller
+class adminController extends Controller
 {
     function index(){
+        return view('admin.index');
+    }
+
+    function addemp(){
         return view('register.index');
     }
+
     function register(registerReq $request){
 
         $tlogin = new login;

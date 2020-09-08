@@ -24,3 +24,8 @@ Route::post('/', 'loginController@verify');
 //Register
 Route::get('/register', 'registerController@index');
 Route::post('/register', 'registerController@register');
+
+//Admin
+Route::get('/admin', 'adminController@index');
+Route::get('/admin/addemp', 'adminController@addemp');
+Route::post('/admin/addemp', 'adminController@register');

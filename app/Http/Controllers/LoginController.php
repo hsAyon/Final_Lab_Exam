@@ -9,7 +9,14 @@ use App\login;
 
 class LoginController extends Controller
 {
-    function index(){
+    function index(Request $request){
+        if($request->session()->get('usertype') == "employer"){
+            return redirect('/home');
+        }
+        else if($request->session()->get('usertype') == "admin"){
+            return redirect('/admin');
+        }
+        
         return view('login.index');
     }
     function verify(LoginReq $request){
@@ -20,12 +27,12 @@ class LoginController extends Controller
 
         if (count($data) > 0) {
             $request->session()->put('username', $request->username);
-            if($data[0]->type == "member"){
-                $request->session()->put('type', "employer");
+            if($data[0]->usertype == "employer"){
+                $request->session()->put('usertype', "employer");
                 return redirect('/home');
             }
-            else if($data[0]->type == "admin"){
-                $request->session()->put('type', "admin");
+            else if($data[0]->usertype == "admin"){
+                $request->session()->put('usertype', "admin");
                 return redirect('/admin');
             }
         } else {
